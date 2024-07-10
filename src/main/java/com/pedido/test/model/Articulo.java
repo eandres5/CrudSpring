@@ -27,5 +27,6 @@ public class Articulo extends EntidadBase {
 	private String codigo;
 	@Column(name = "precio_unitario")
 	private BigDecimal precioUnitario;
-
+	@Column(name = "stock")
+	private Long stock;
 }

@@ -18,4 +18,6 @@ public interface ArticuloRepository  extends PagingAndSortingRepository<Articulo
 
 	void deleteById(Long id);
 
+	Articulo findById(Long id);
+
 }

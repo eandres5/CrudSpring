@@ -74,8 +74,8 @@ public class ClienteServiceImpl implements ClienteService{
 
 	@Override
 	public Cliente findOne(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteRepository.findById(id);
+
 	}
 
 	@Override

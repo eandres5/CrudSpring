@@ -61,25 +61,39 @@ public class ArticuloServiceImpl implements ArticuloService{
 
 	@Override
 	public Articulo saveDto(ArticuloDto dto) {
-		Articulo articulo = new Articulo();
-		articulo.setCodigo(secuenciaService.getSecuencial("AR-"));
-		articulo.setNombre(dto.getNombre() != null ? dto.getNombre(): null);
-		articulo.setPrecioUnitario(new BigDecimal(dto.getPrecioUnitario()));
-		articulo.setFechaCreacion(new Date());
-		save(articulo);
-		return articulo;
+//		try{
+			Articulo articulo = new Articulo();
+			// aqui reviso sino tiene id es un articulo nuevo
+			// caso contrario se debe actualizar
+			if(dto.getId() == null) {
+				articulo.setCodigo(secuenciaService.getSecuencial("AR-"));
+				articulo.setNombre(dto.getNombre() != null ? dto.getNombre(): null);
+				articulo.setPrecioUnitario(new BigDecimal(dto.getPrecioUnitario()));
+				articulo.setFechaCreacion(new Date());
+				save(articulo);
+				return articulo;
+			}else {
+				Articulo articuloUpdate = findOne(dto.getId());
+				articuloUpdate.setNombre(dto.getNombre());
+				articuloUpdate.setPrecioUnitario(new BigDecimal(dto.getPrecioUnitario()));
+				articuloUpdate.setFechaModificacion(new Date());
+				save(articuloUpdate);
+				return articuloUpdate;
+			}
+//		}catch() {
+//			
+//		}
+		
 	}
 
 	@Override
 	public Articulo update(Articulo entity) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Articulo findOne(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return articuloRepository.findById(id);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.pedido.test.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -28,5 +29,6 @@ public class DetalleOrdenArticulo extends EntidadBase{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "articulo_id", nullable = false)
 	private Articulo articulo;
-	
+	@Column
+	private Long cantidadAritculo;
 }
